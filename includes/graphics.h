@@ -31,8 +31,8 @@ typedef struct	s_window {
 	char	*title;
 	t_img	*img_front;
 	t_img	*img_back;
-	t_img	**img_current;
-	t_img	**img_next;
+	t_img	*img_current;
+	t_img	*img_next;
 	t_list	*text_buffer;
 }				t_window;
 
@@ -89,6 +89,7 @@ void		g_put_pixel(t_img *img, t_point_int pt, int color);
 void		g_draw_line(t_img *img, t_point_int a, t_point_int b, t_gradient color);
 void		g_rect_fill(t_img *img, t_rect_int rect, int color);
 void		g_window_fill(t_window *win, int color);
+void		g_img_fill(t_img *img, int color);
 int		lerp_rbg(t_gradient color, double t);
 t_gradient	invert_gradient(t_gradient color);
 t_line_int	pt_to_l(t_point_int a, t_point_int b);

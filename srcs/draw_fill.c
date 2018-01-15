@@ -70,6 +70,6 @@ void	g_window_fill(t_window *win, int color)
 {
 	t_img		*screen;
 
-	screen = win->img_front;
+	screen = win->img_next;
 	g_img_fill(screen, color);
 }

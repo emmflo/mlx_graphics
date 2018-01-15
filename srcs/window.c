@@ -27,8 +27,8 @@ t_window	*g_new_window(void *mlx_ptr, int size_x, int size_y, char *title)
 	win->title = strdup(title);
 	win->img_front = g_new_img(mlx_ptr, size_x, size_y);
 	win->img_back = g_new_img(mlx_ptr, size_x, size_y);
-	win->img_current = &(win->img_front);
-	win->img_next = &(win->img_back);
+	win->img_current = win->img_front;
+	win->img_next = win->img_back;
 	win->mlx_ptr = mlx_ptr;
 	win->text_buffer = NULL;
 	return (win);
@@ -78,9 +78,14 @@ void		g_render_delete_text_buffer(t_window *win)
 
 int			g_update(t_window *win)
 {
+	t_img	*tmp;
+
+	tmp = win->img_current;
+	win->img_current = win->img_next;
+	win->img_next = tmp;
 	mlx_clear_window(win->mlx_ptr, win->win_ptr);
 	if (!(mlx_put_image_to_window(win->mlx_ptr, win->win_ptr,
-					(win->img_front)->img, 0, 0)))
+					(win->img_current)->img, 0, 0)))
 		return (0);
 	return (1);
 }
