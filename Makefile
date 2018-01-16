@@ -9,7 +9,7 @@ OBJS := $(addprefix $(OBJDIR)/,$(OBJLIST))
 CC := clang
 SRCDIR := srcs
 INCDIR := includes
-CFLAGS := -Wall -Wextra -Werror -I$(INCDIR) -I../minilibx/ -I../libft/includes
+CFLAGS := -O3 -g -Wall -Wextra -Werror -I$(INCDIR) -I../minilibx/ -I../libft/includes
 NAME := libmlx_graphics.a
 
 .PHONY : all clean fclean binclean re

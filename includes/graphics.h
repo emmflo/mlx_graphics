@@ -55,6 +55,8 @@ typedef struct	s_line {
 	t_gradient	color;
 }		t_line;
 
+
+
 typedef struct	s_line_int {
 	t_point_int	a;
 	t_point_int	b;
