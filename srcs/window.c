@@ -83,8 +83,8 @@ int			g_update(t_window *win)
 	tmp = win->img_current;
 	win->img_current = win->img_next;
 	win->img_next = tmp;
-	mlx_clear_window(win->mlx_ptr, win->win_ptr);
 	g_img_fill(win->img_next, 0);
+	mlx_clear_window(win->mlx_ptr, win->win_ptr);
 	if (!(mlx_put_image_to_window(win->mlx_ptr, win->win_ptr,
 					(win->img_current)->img, 0, 0)))
 		return (0);
