@@ -4,6 +4,7 @@ OBJLIST := \
 	draw_line.o \
 	draw_fill.o \
 	draw_utils.o \
+	img.o \
 	window.o
 OBJS := $(addprefix $(OBJDIR)/,$(OBJLIST))
 CC := clang
