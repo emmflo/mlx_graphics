@@ -14,6 +14,8 @@
 #include <math.h>
 #include <stdlib.h>
 
+#include <stdio.h>
+
 void	g_rect_fill(t_img *img, t_rect_int rect, int color)
 {
 	t_point_int	pt;
@@ -31,6 +33,33 @@ void	g_rect_fill(t_img *img, t_rect_int rect, int color)
 	}
 }
 
+void	g_rect_hue_gradient(t_img *img, t_rect_int rect)
+{
+	t_point_int	pt;
+	t_point_int	real_pt;
+	t_hsv		color;
+	int		rgb;
+
+	pt.x = 0;
+	while (pt.x < rect.w)
+	{
+		pt.y = 0;
+		color.hue = (double)pt.x * 360 / (double)rect.w;
+		printf("HUE %f\n", color.hue);
+		color.saturation = 1;
+		color.value = 1;
+		rgb = g_hsv_to_color(color);
+		real_pt.x = pt.x + rect.x;
+		while (pt.y < rect.h)
+		{
+			real_pt.y = pt.y + rect.y;
+			g_put_pixel(img, real_pt, rgb);
+			pt.y++;
+		}
+		pt.x++;
+	}
+}
+
 void	g_rect_hsv_gradient(t_img *img, t_rect_int rect, double hue)
 {
 	t_point_int	pt;
@@ -41,12 +70,12 @@ void	g_rect_hsv_gradient(t_img *img, t_rect_int rect, double hue)
 	while (pt.x < rect.w)
 	{
 		pt.y = 0;
+		real_pt.x = pt.x + rect.x;
 		while (pt.y < rect.h)
 		{
 			color.hue = hue;
 			color.saturation = (double)pt.x / (double)rect.w;
 			color.value = (double)(rect.h - pt.y) / (double)rect.h;
-			real_pt.x = pt.x + rect.x;
 			real_pt.y = pt.y + rect.y;
 			g_put_pixel(img, real_pt, g_hsv_to_color(color));
 			pt.y++;
