@@ -102,5 +102,6 @@ void		g_render_delete_text_buffer(t_window *win);
 void		g_add_to_text_buffer(t_window *win, t_text *text);
 t_text		*g_make_text(int x, int y, int color, char *str);
 void		g_img_copy(t_img *dest, t_img *src);
+void		g_rect_hue_gradient(t_img *img, t_rect_int rect);
 
 #endif

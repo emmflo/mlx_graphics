@@ -33,6 +33,26 @@ void	g_rect_fill(t_img *img, t_rect_int rect, int color)
 	}
 }
 
+void	g_rect_fill_lerp(t_img *img, t_rect_int rect, t_gradient color)
+{
+	t_point_int	pt;
+	t_point_int	real_pt;
+
+	pt.x = 0;
+	while (pt.x < rect.w)
+	{
+		pt.y = 0;
+		real_pt.x = pt.x + rect.x;
+		while (pt.y < rect.h)
+		{
+			real_pt.y = pt.y + rect.y;
+			g_put_pixel(img, real_pt, lerp_rbg(color, (double)pt.x / (double)rect.w));
+			pt.y++;
+		}
+		pt.x++;
+	}
+}
+
 void	g_rect_hue_gradient(t_img *img, t_rect_int rect)
 {
 	t_point_int	pt;
@@ -45,7 +65,6 @@ void	g_rect_hue_gradient(t_img *img, t_rect_int rect)
 	{
 		pt.y = 0;
 		color.hue = (double)pt.x * 360 / (double)rect.w;
-		printf("HUE %f\n", color.hue);
 		color.saturation = 1;
 		color.value = 1;
 		rgb = g_hsv_to_color(color);
